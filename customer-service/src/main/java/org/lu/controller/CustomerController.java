@@ -36,27 +36,23 @@ public class CustomerController {
 	@Autowired
 	RabbitTemplate rabbitTemplate;
 
-	@CrossOrigin
 	@RequestMapping("/healthCheck")
 	public String healthCheck() {
 		return "Customer service is running";
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/customers", method = RequestMethod.GET)
 	public Set<Customer> customers() {
 		LOGGER.info("------get all customers------");
 		return customerService.getAllCustomers();
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
 	public Customer customer(@PathVariable String id) {
 		LOGGER.info("------get a customer------");
 		return customerService.getOneCustomer(id);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/customers/{id}", method = RequestMethod.PUT, consumes = "application/json")
 	public Customer updateCustomer(@PathVariable String id,
 			@Valid @RequestBody Customer customer) {
@@ -65,7 +61,6 @@ public class CustomerController {
 		return customerService.saveCustomer(customer);
 	}
 
-	@CrossOrigin
 	@RequestMapping(value = "/customers", method = RequestMethod.POST, consumes = "application/json")
 	public void saveNewCustomer(@Valid @RequestBody Customer customer) {
 		LOGGER.info("------create a customers------");
