@@ -1,0 +1,37 @@
+server:
+  port: 8070
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+     leaseRenewalIntervalInSeconds: 5
+     
+zuul:
+  routes:
+    customers: 
+      path: /customers/**
+      url: http://localhost:8080/customers
+    healthCheck: 
+      path: /checkHealth
+      url: http://localhost:8080
+    user:
+      path: /user/**
+      url: http://localhost:8090/uaa/user
+
+security:
+  user:
+    password: none
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:8090/uaa/oauth/token
+      userAuthorizationUri: http://localhost:8090/uaa/oauth/authorize
+      clientId: webapp
+      clientSecret: 123456789
+    resource:
+      jwt:
+        keyValue: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsE57EsKQgNxTCmagtGzBC/MsOAzQ7Bg8Uxnq1zgOsM0PodXqqqf2SoSfqWs3lnUk6DytLRNGKdyYZ5jHqtwJz/FiapRrz2zRy4uHE/3qC1WM5sM2zt1CbgLNn7cFLd7xr84glvjikL0hyACiAUZN4lJi9i74ZTn9WIxShJO/GjZPk0MCvif35/q3U08dJ6VCIwtFb8C5j8g4PeRAKTNlkvjdwF8fmgE0m24uJPpaWtDiO0ihNpJRSYUBIzmv6D8CPY5jYw5/3XZKL6kFFADQg6i4g60lZV0gysie4Ax9U4ArCgvSZfa3p2zs1ua/DNGPBt0dbveNKjXuZq9tT1AKTQIDAQAB
+          -----END PUBLIC KEY-----

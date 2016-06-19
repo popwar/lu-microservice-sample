@@ -1,0 +1,44 @@
+
+
+.rowheight
+{
+height: 40px;
+
+}
+
+.margin-top-05 { margin-top: 0.5em; }
+
+
+.minusleftpad
+{
+
+    margin-left: -15px;
+
+}
+.whitecolor
+{
+    color: white;
+}
+.row1
+{
+    height: 30px;
+    
+}
+.hr11 
+{
+    display: block;
+    height: 5px;
+    border: 0;
+    border-top: 3px solid #A0A0A0;
+    margin: 1em 0;
+    margin-top: -15px;
+    padding: 0;
+}
+.bluecolor
+{
+    color: #0080FC;
+}
+.customfont{
+	font-size: 13px;
+    
+}

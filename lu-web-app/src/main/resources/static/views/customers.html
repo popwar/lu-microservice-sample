@@ -1,0 +1,28 @@
+<div ng-if="access">
+	<table class="table table-striped">
+		<thead class="thead-inverse">
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Password</th>
+				<th>Age</th>
+				<th>Expense</th>
+			</tr>
+			<tr ng-repeat="c in customers">
+				<th scope="row"><a href="#/customers/edit/{{c.id}}">{{$index
+						+ 1}}</a></th>
+				<td>{{c.userName}}</td>
+				<td>{{c.password}}</td>
+				<td>{{c.age}}</td>
+				<td>{{c.expense | currency:"AUD$"}}</td>
+			</tr>
+		</thead>
+	</table>
+
+	<button type="button" ng-click="toAdd()" class="btn btn-primary">New
+		Customer</button>
+</div>
+
+<h2 ng-if="!access"
+	style="color: #286090; text-align: center; padding-top: 100px; padding-bottom: 100px;">You
+	have no permission to visit this page</h2>

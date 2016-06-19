@@ -1,0 +1,82 @@
+body {
+	background-color: #f2f2f2;
+	background: transparent;
+}
+
+.loginbox-header {
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.form-control {
+	min-width: 100px;
+}
+
+.form-row {
+	margin-bottom: 20px;
+}
+
+.blue-text {
+	color: #4391D4;
+}
+
+.black-text {
+	color: black;
+}
+
+.text-form-title {
+	font-size: 115%;
+	font-weight: 600;
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.input-md {
+	width: 92%;
+}
+
+#login {
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+hr.hrstyle {
+	border-top: 1px solid #a6a6a6;
+}
+
+.btn {
+	background-color: #0080ff;
+	color: white;
+}
+
+#link-back-home, .loginbox {
+	max-width: 393px;
+	margin: auto;
+}
+
+#link-back-home {
+	margin-top: 30px;
+	font-size: 90%;
+}
+
+.loginbox {
+	border-radius: 5px;
+	background-color: white;
+	border: 2px solid #cccccc;
+	padding: 20px 40px;
+}
+
+#loginSection {
+	padding-top: 5%;
+}
+
+#forgotpwd-signup p {
+	font-size: 80%;
+}
+
+@media ( max-width :480px) {
+	.loginbox {
+		width: 90%;
+	}
+}

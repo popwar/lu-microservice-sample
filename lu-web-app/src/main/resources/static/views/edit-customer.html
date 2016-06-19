@@ -1,0 +1,48 @@
+<div>
+	<form id="myForm" name="myForm" ng-submit="save(myForm.$valid)"
+		novalidate>
+		<fieldset class="form-group">
+			<div
+				ng-class="{ 'has-error': (myForm.$submitted || myForm.userName.$dirty) && myForm.userName.$invalid}">
+				<label for="userName">User Name:</label> <input type="text"
+					class="form-control" name="userName" id="userName"
+					placeholder="User Name" ng-model="customer.userName" required />
+				<div ng-messages="myForm.userName.$dirty && myForm.userName.$error"
+					role="alert">
+					<span class="help-block" ng-message="required">User name is
+						empty.</span>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset class="form-group">
+			<div
+				ng-class="{ 'has-error': (myForm.$submitted || myForm.password.$dirty) && myForm.password.$invalid}">
+				<label for="password">Password:</label> <input type="text"
+					class="form-control" name="password" id="password"
+					placeholder="Password" ng-model="customer.password" required />
+				<div ng-messages="myForm.password.$dirty && myForm.password.$error"
+					role="alert">
+					<span class="help-block" ng-message="required">Password is
+						empty.</span>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset class="form-group">
+			<div
+				ng-class="{ 'has-error': (myForm.$submitted || myForm.age.$dirty) && myForm.age.$invalid}">
+				<label for="age">Age:</label> <input type="text"
+					class="form-control" name="age" id="age" placeholder="Age"
+					ng-model="customer.age" check-age required />
+				<div ng-messages="myForm.age.$dirty && myForm.age.$error"
+					role="alert">
+					<span class="help-block" ng-message="required">Age is empty.</span>
+					<span class="help-block" ng-message="checkAge">Age is not
+						valid.</span>
+				</div>
+			</div>
+		</fieldset>
+		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="button" onclick="window.history.back();"
+			class="btn btn-primary">Cancel</button>
+	</form>
+</div>
