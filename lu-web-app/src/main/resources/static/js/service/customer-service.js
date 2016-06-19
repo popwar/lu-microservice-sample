@@ -67,20 +67,16 @@ customerServices.factory('customerService', [ '$log', '$http',
 			}
 
 			factory.logout = function(token, callback) {
-				$("#X-CSRF-TOKEN").val(token);
-				$("#logoutForm").submit();
-				callback("ok");
-				
-//				$http.post("http://localhost:8090/uaa/logout", {
-//					headers : {
-//						"X-CSRF-TOKEN" : token
-//					}
-//				}).then(function success(response) {
-//					console(response);
-//					callback(response);
-//				}, function error(response) {
-//					callback("failed");
-//				});
+				$.ajax({
+					url : "http://localhost:8070/logout",
+					type : "POST",
+					data : $("#logoutForm").serialize(),
+					async : false,
+					success : function() {
+						$("#logoutForm").submit();
+						callback("ok");
+					}
+				});
 			}
 
 			return factory;

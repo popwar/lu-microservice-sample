@@ -33,7 +33,9 @@ function mainController(customerService, $scope, $location) {
 	$scope.logout = function() {
 		var token = readCookie("XSRF-TOKEN");
 		customerService.logout(token, function(response) {
-			$location.path("/");
+			if(response === "ok"){
+				$location.path("/");
+			}
 		});
 	}
 }
