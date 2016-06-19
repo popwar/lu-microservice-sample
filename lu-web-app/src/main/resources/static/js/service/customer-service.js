@@ -67,6 +67,7 @@ customerServices.factory('customerService', [ '$log', '$http',
 			}
 
 			factory.logout = function(token, callback) {
+				$("#_csrf").val(token);
 				$.ajax({
 					url : "http://localhost:8070/logout",
 					type : "POST",
