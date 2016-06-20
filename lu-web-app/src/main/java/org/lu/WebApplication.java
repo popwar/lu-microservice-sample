@@ -48,14 +48,10 @@ public class WebApplication extends WebSecurityConfigurerAdapter implements
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.antMatcher("/**")
-				.authorizeRequests()
-				.antMatchers("/")
-				.hasRole("HOME")
-				.antMatchers("/customers/**").hasRole("CUSTOMER").anyRequest()
-				.authenticated().and().logout().logoutUrl("/logout")
-				.logoutSuccessUrl("/").invalidateHttpSession(true).permitAll()
-				.and().csrf().csrfTokenRepository(csrfTokenRepository()).and()
+		http.logout().and().antMatcher("/**").authorizeRequests()
+				.antMatchers("/").hasRole("HOME").antMatchers("/customers/**")
+				.hasRole("CUSTOMER").anyRequest().authenticated().and().csrf()
+				.csrfTokenRepository(csrfTokenRepository()).and()
 				.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 	}
 
