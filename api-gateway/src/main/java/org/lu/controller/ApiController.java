@@ -1,7 +1,10 @@
 package org.lu.controller;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import javax.validation.Valid;
 
@@ -71,18 +74,30 @@ public class ApiController {
 	 */
 	@RequestMapping(value = "/customers", method = RequestMethod.GET, produces = "application/json")
 	public Set<Customer> getCustomers() {
-		Set<Customer> customers = apiHytrixController.getCustomers();
-		Set<Expense> expenses = apiHytrixController.getExpense();
-		for (Customer customer : customers) {
-			for (Expense expense : expenses) {
-				if (customer.getUserName().equalsIgnoreCase(
-						expense.getUserName())) {
-					customer.setExpense(expense.getValue());
-					break;
-				}
-			}
+		long start = System.currentTimeMillis();
+		CompletableFuture<Set<Customer>> result = CompletableFuture.supplyAsync(
+				apiHytrixController::getCustomers).thenCombineAsync(
+				CompletableFuture.supplyAsync(apiHytrixController::getExpense),
+				(customers, expenses) -> {
+					for (Customer customer : customers) {
+						for (Expense expense : expenses) {
+							if (customer.getUserName().equalsIgnoreCase(
+									expense.getUserName())) {
+								customer.setExpense(expense.getValue());
+								break;
+							}
+						}
+					}
+					long end = System.currentTimeMillis();
+					System.out.println((end - start) + " ms");
+					return customers;
+				});
+		try {
+			return result.get();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return Collections.emptySet();
 		}
-		return customers;
 	}
 
 	/**

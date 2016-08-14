@@ -10,7 +10,7 @@ includes two rest services customer-service(return data from mongodb) and expens
 and register them with the discovery service. Both services can deploy multipule instances(replica) in the environment 
 for the client side load balancer and failover.
 
-also has a web app developed by AngularJS and call all the api exposed by api-gateway.
+also has a web app developed by AngularJS and calls all the apis exposed by api-gateway.
 
 use the example from https://github.com/spring-guides/tut-spring-security-and-angular-js/tree/master/oauth2
 to implement the authenticate server that works for SSO
