@@ -17,18 +17,6 @@ to implement the authenticate server that works for SSO
 
 all the applications are based on spring boot.
 
-Eureka server: http://strl099021.mso.net:8761
-
-Config server: http://strl099021.mso.net:8888, if you want to check the config files pulled from pwc github. please use http://strl099021.mso.net:8888/{servcieID}/default. For example, http://strl099021.mso.net:8888/notification-service/default displays the content of config files that can be applied by notification-service.
-
-When configuring microservice, the spring.application.name should be the same as the {serviceID} mentioned above. Use http://eureka:8761/eureka/ to talk to eureka server. Use serviceId: config-service to talk to config server.
-
-Every time after finish a specific microservice, the docker-compose.yml needs to be updated as well.
-
-Before doing mvn package or mvn deploy, please login to dtr.artifacts-stg.pwc.com at the first place by using 'docker login dtr.artifacts-stg.pwc.com'. Otherwise you cannot build the docker image with plugin successfully.
-
-Currently, we use docker 1.13 to simplify the process to group docker compose and docker swarm together. Use "docker stack deploy -c " to deploy services in the swarm env. In your local env, you might need to use "docker swarm init" to create a swarm manager node as the prerequisite.
-
 Configure a new client service to consume microservices
 
 In pom.xml, add spring cloud and eureka dependency
