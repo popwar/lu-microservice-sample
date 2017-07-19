@@ -64,7 +64,7 @@ In main application class, include @SpringBootApplication, @EnableOAuth2Client, 
 
 Call APIs provided by microservice infrastructure in a back end client application
 
-All the client requests go through API gateway. The current API address is http://strl099046:9999 and http://strl099047:9999
+All the client requests go through API gateway. The current API address is 
 
 Add Oauth2 config class for example:
 @Configuration
